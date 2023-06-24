@@ -1,19 +1,19 @@
 using UnityEngine;
 using UnityEditor;
 
-namespace WF.QuerySelector
+namespace WF.RecursiveSelector
 {
-    public class QuerySelectorEditorWindow : EditorWindow
+    public class RecursiveSelectorEditorWindow : EditorWindow
     {
         string query = string.Empty;
 
-        const string TOOLTIP = @"Usage of Query Selector: https://github.com/onuryurdupak/unity3d-query-selector#readme";
+        const string TOOLTIP = @"TODO(onur): Explain how it works.";
 
-        [MenuItem("Window/Query Selector")]
+        [MenuItem("Window/Recursive Selector")]
         static void Init()
         {
-            QuerySelectorEditorWindow window = (QuerySelectorEditorWindow)GetWindow(typeof(QuerySelectorEditorWindow));
-            window.titleContent = new GUIContent("Query Selector");
+            RecursiveSelectorEditorWindow window = (RecursiveSelectorEditorWindow)GetWindow(typeof(RecursiveSelectorEditorWindow));
+            window.titleContent = new GUIContent("Recursive Selector");
             window.Show();
         }
 

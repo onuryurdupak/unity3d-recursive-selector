@@ -1,4 +1,4 @@
-﻿namespace WF.QuerySelector
+﻿namespace WF.RecursiveSelector
 {
     public static class Metedata
     {
