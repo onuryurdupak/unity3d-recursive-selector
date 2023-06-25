@@ -11,9 +11,9 @@ namespace WF.RecursiveSelector
         string textFieldVal = string.Empty;
         bool wasCompiling = EditorApplication.isCompiling;
         bool foldout = false;
-        Vector2 scollPos = Vector2.zero;
-        readonly HashSet<string> classCache = new(); // For O(1) lookup.
-        readonly List<string> classCacheList = new(); // For ordering.
+        Vector2 scrollPos = Vector2.zero;
+        readonly Dictionary<string, string> classCache = new();
+        readonly List<string> classCacheList = new();
 
         [MenuItem("Window/Recursive Selector")]
         static void Init()
@@ -44,25 +44,26 @@ namespace WF.RecursiveSelector
 
             EditorGUILayout.BeginHorizontal();
 
-            // Use local functions to avoid errors caused by not closing groups when return prevents code from 
-            // executing EndHorizontal() / EndVertical() calls.
+            // Use local functions to avoid errors caused by not having EndHorizontal() / EndVertical() calls due to
+            // use of return statements.
             void typeSelection()
             {
                 textFieldVal = EditorGUILayout.TextField(textFieldVal);
 
                 if (GUILayout.Button("Select"))
                 {
-                    bool exists = classCache.TryGetValue(textFieldVal, out string foundValue);
+                    bool exists = classCache.TryGetValue(textFieldVal, out string assemblyName);
                     if (!exists)
                     {
-                        Debug.LogError($"Type '{textFieldVal}' does not exist in class cache. Check for compile errors and missing namespace portion.");
+                        Debug.LogWarning(@$"Type '{textFieldVal}' does not exist in the class cache.
+Check for compile errors and missing namespace input.");
                         return;
                     }
 
-                    Type foundType = Type.GetType(textFieldVal);
+                    Type foundType = Type.GetType($"{textFieldVal}, {assemblyName}");
                     if (foundType == null)
                     {
-                        Debug.LogError($"Internal error: Type '{textFieldVal}' does not exist in cache.");
+                        Debug.LogError($"Could not load type '{textFieldVal} from {assemblyName}'. Contact developer.");
                         return;
                     }
                     UpdateSelection(foundType);
@@ -71,6 +72,8 @@ namespace WF.RecursiveSelector
                 if (GUILayout.Button("Clear"))
                 {
                     textFieldVal = string.Empty;
+                    GUI.FocusControl(null);
+                    Repaint();
                 }
             }
             typeSelection();
@@ -86,7 +89,7 @@ namespace WF.RecursiveSelector
             foldout = EditorGUILayout.Foldout(foldout, "Filtered Results");
             if (foldout)
             {
-                scollPos = EditorGUILayout.BeginScrollView(scollPos);
+                scrollPos = EditorGUILayout.BeginScrollView(scrollPos);
                 foreach (string s in searchResults)
                 {
                     if (GUILayout.Button($"     {s}", Styles.LeftAlignedWhiteFont))
@@ -125,7 +128,7 @@ namespace WF.RecursiveSelector
 
                     foreach (var type in types)
                     {
-                        classCache.Add(type.FullName);
+                        classCache[type.FullName] = type.Assembly.GetName().Name;
                         classCacheList.Add(type.FullName);
                     }
                 }
