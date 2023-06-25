@@ -92,6 +92,8 @@ namespace WF.RecursiveSelector
                     if (GUILayout.Button($"     {s}", Styles.LeftAlignedWhiteFont))
                     {
                         textFieldVal = s;
+                        GUI.FocusControl(null);
+                        Repaint();
                     }
                 }
                 EditorGUILayout.EndScrollView();
