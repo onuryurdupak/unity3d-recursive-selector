@@ -2,7 +2,7 @@
 
 #### DESCRIPTION:
 
-Enables recursive selection of children components of an input type in Unity Editor.
+Enables recursive selection of child components under current selection (of an input type) in Unity Editor.
 
 #### USAGE:
 
