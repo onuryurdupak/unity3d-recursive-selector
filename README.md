@@ -22,7 +22,7 @@ Let's look at an example use case where this might come in handy.
 
 Imagine your scene has following game objects:
 
-(You might have a LOT more objects in another case.)
+(You might have a LOT more child objects in your case.)
 
 ![](/Readme/Example_Lobby_Representation.png)
 
@@ -30,18 +30,20 @@ You might want to select all `Text` components that contain the 'Empty Slot' tex
 
 Your options include:
 
-1-) Using the `Hierarchy` search bar with `Types` which will select all instances of `Text` component in the scene.
+1-) Manually selecting desired game objects from the `Hierarchy` window.
 
-2-) Using a prefab for repeating elements; editing the prefab source, modifying all prefab clones. (This is a valid option, but you may want to avoid using prefabs for this. E.g: You may want to keep whole object state in the encapsulating scene.)
+2-) Using the `Hierarchy` search bar with `Types` which will select all instances of `Text` components in the scene. If the scene has many `Text` components, you will need to filter again by hand and manually select desired objects.
 
-3-) Using the `Recursive Selector` as shown below:
+3-) Using a prefab for repeating elements; editing the prefab source, modifying all prefab clones. (This is a valid option, but you may want to avoid using prefabs for this. E.g: You may want to keep object states in the encapsulating scene only.)
+
+4-) Using the `Recursive Selector` as shown below:
 
 
 - Select top level game objects from `Hierarchy` window.
 
 ![](/Readme/Hierarchy_Selection.png)
 
-- Type in `UI.Text` (quick-select complete definition from `Filtered Results` foldout). Then click on `Select`.
+- Type in `UI.Text` (quick-select complete definition from the `Filtered Results` foldout). Then click on `Select`.
 
 ![](/Readme/Recursive_Selector_Usage.png)
 
