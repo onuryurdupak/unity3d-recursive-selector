@@ -22,6 +22,7 @@ Let's look at an example use case where this might come in handy.
 
 Imagine your scene has following game objects:
 
+(You might have a LOT more objects in another case.)
 
 ![](/Readme/Example_Lobby_Representation.png)
 
