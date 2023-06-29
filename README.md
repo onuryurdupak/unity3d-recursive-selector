@@ -26,7 +26,7 @@ Imagine your scene has following game objects:
 
 ![](/Readme/Example_Lobby_Representation.png)
 
-You might want to select all `Text` components that contain the 'Empty Slot' text and modify their font color.
+You might want to select all `Text` components inside the grid (which contain 'Empty Slot' texts in our example) and modify their font color.
 
 Your options include:
 
