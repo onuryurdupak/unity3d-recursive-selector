@@ -45,6 +45,8 @@ Your options include:
 
 - Type in `UI.Text` (quick-select complete definition from the `Filtered Results` foldout). Then click on `Select`.
 
+> **WARNING**: Remember that, in order for this to work, you must have an active selection in `Hierarchy` window (that have children components of input type) prior to this step. Otherwise no game objects will be selected.
+
 ![](/Readme/Recursive_Selector_Usage.png)
 
 - Upon returning to the `Hierarchy` window, your selection should now only contain `UI.Text`-typed children of the previously selected items. You can now update the properties of all selected items from the `Inspector` window.
