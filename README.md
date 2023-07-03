@@ -43,7 +43,7 @@ Your options include:
 
 ![](/Readme/Hierarchy_Selection.png)
 
-- Type in `UI.Text` (quick-select complete definition from the `Filtered Results` foldout). Then click on `Select`.
+- Open `Recursive Selector` window and type in `UI.Text` (quick-select complete definition from the `Filtered Results` foldout). Then click on `Select`.
 
 > **WARNING**: Remember that, in order for this to work, you must have an active selection in `Hierarchy` window (that have children components of input type) prior to this step. Otherwise no game objects will be selected.
 
