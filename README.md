@@ -57,7 +57,7 @@ Your options include:
 
 ---
 
-> **INFO**: You can use `Recursive Selector` to search for assets containing a specific component in `Project` view too (wit a limitation).
+> **INFO**: You can use `Recursive Selector` to search for assets containing a specific component in `Project` view too (with a limitation).
 
 Select a group of prefabs in `Project` window and apply the same same steps in the example. Your selection will be updated to include the prefabs which have the input component.
 
