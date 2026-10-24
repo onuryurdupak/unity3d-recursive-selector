@@ -115,23 +115,22 @@ Check for compile errors and missing namespace input.");
             classCache.Clear();
             classCacheList.Clear();
 
-            foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
-            {
-                if (!assembly.FullName.StartsWith("System") &&
-                    !assembly.FullName.StartsWith("Microsoft") &&
-                    !assembly.FullName.StartsWith("mscorlib") &&
-                    !assembly.FullName.StartsWith("netstandard") &&
-                    !assembly.FullName.StartsWith("UnityEditor"))
+            var types = TypeCache.GetTypesDerivedFrom<Component>()
+                .Where(type => !type.IsAbstract)
+                .Where(type =>
                 {
-                    var types = assembly.GetTypes()
-                        .Where(type => (type.IsSubclassOf(typeof(MonoBehaviour)) || type.IsSubclassOf(typeof(Component))) && !type.IsAbstract);
+                    string assemblyName = type.Assembly.FullName;
+                    return !assemblyName.StartsWith("System") &&
+                        !assemblyName.StartsWith("Microsoft") &&
+                        !assemblyName.StartsWith("mscorlib") &&
+                        !assemblyName.StartsWith("netstandard") &&
+                        !assemblyName.StartsWith("UnityEditor");
+                });
 
-                    foreach (var type in types)
-                    {
-                        classCache[type.FullName] = type.Assembly.GetName().Name;
-                        classCacheList.Add(type.FullName);
-                    }
-                }
+            foreach (var type in types)
+            {
+                classCache[type.FullName] = type.Assembly.GetName().Name;
+                classCacheList.Add(type.FullName);
             }
         }
 

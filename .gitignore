@@ -5,3 +5,7 @@ Recursive Selector/Logs/
 Recursive Selector/UserSettings/
 Recursive Selector/Temp/
 Recursive Selector/obj/
+Recursive Selector/*.csproj
+Recursive Selector/*.sln
+Recursive Selector/*.slnx
+Recursive Selector/.vscode/
